@@ -1,18 +1,27 @@
-import { Header, Skeleton } from "@mantine/core";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import { Button, Group, createStyles } from "@mantine/core";
+import Image from "next/image";
+import logo from "../../../public/favicon.svg";
+import NavigationMenuButton from "./NavigationDrawer/NavigationDrawerButton";
+import SearchButton from "./NavigationDrawer/SearchBar/SearchButton";
+
+const useStyles = createStyles((theme) => ({
+  header: {
+    borderBottom: `1px solid ${theme.colors.gray[7]}`,
+  },
+}));
 
 export default function Navbar() {
-  const ConnectButton = dynamic(
-    () => import("../../ConnectButton/ConnectButton"),
-    { ssr: false }
-  );
+  const { classes } = useStyles();
 
   return (
-    <Header height={60}>
-      <Suspense fallback={<Skeleton width={100} height={50} />}>
-        <ConnectButton />
-      </Suspense>
-    </Header>
+    <Group className={classes.header} position="apart" spacing={"md"} p={"md"}>
+      <Image height={36} width={36} src={logo} />
+
+      <Group spacing={"xs"}>
+        <SearchButton />
+        <Button size="sm">Connect</Button>
+        <NavigationMenuButton />
+      </Group>
+    </Group>
   );
 }
