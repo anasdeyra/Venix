@@ -6,6 +6,7 @@ import { MantineProvider } from "@mantine/core";
 import theme from "../../theme";
 import { NextComponentType, NextPageContext } from "next";
 import { Global } from "@emotion/react";
+import bgImage from "../../public/bg.jpg";
 
 type Props = {
   Component: NextComponentType<NextPageContext, any, {}>;
@@ -26,10 +27,17 @@ export default function AppShell({ Component, pageProps }: Props) {
             "@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap')",
           ]}
         />
-        <A header={<Navbar />}>
+        <A
+          styles={{
+            root: {
+              backgroundImage: `url(${bgImage.src})`,
+              backgroundSize: "fill",
+            },
+          }}
+          header={<Navbar />}
+        >
           <Component {...pageProps} />
         </A>
-        ;
       </MantineProvider>
     </ThirdwebProvider>
   );

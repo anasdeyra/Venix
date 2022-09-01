@@ -1,27 +1,43 @@
-import { Button, Group, createStyles } from "@mantine/core";
+import { Button, Group, createStyles, Header } from "@mantine/core";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import logo from "../../../public/favicon.svg";
 import NavigationMenuButton from "./NavigationDrawer/NavigationDrawerButton";
 import SearchButton from "./NavigationDrawer/SearchBar/SearchButton";
 
 const useStyles = createStyles((theme) => ({
   header: {
-    borderBottom: `1px solid ${theme.colors.gray[7]}`,
+    background: "transparent",
+    backdropFilter: "blur(50px)",
+  },
+  pointer: {
+    cursor: "pointer",
   },
 }));
 
 export default function Navbar() {
   const { classes } = useStyles();
+  const { push } = useRouter();
 
   return (
-    <Group className={classes.header} position="apart" spacing={"md"} p={"md"}>
-      <Image height={36} width={36} src={logo} />
+    <Header className={classes.header} height={64}>
+      <Group align={"center"} position="apart" spacing={"md"} p={"md"}>
+        <Image
+          onClick={() => {
+            push("/");
+          }}
+          className={classes.pointer}
+          height={36}
+          width={36}
+          src={logo}
+        />
 
-      <Group spacing={"xs"}>
-        <SearchButton />
-        <Button size="sm">Connect</Button>
-        <NavigationMenuButton />
+        <Group spacing={"xs"}>
+          <SearchButton />
+          <Button size="sm">Connect</Button>
+          <NavigationMenuButton />
+        </Group>
       </Group>
-    </Group>
+    </Header>
   );
 }

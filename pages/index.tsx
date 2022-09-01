@@ -1,9 +1,10 @@
-import { Button, Group } from "@mantine/core";
+import Hero from "../components/Pages/Home/Hero";
+import { Box } from "@mantine/core";
 
 export default function IndexPage() {
   return (
-    <Group mt={50} position="center">
-      <Button size="xl">Welcome to Mantine!</Button>
-    </Group>
+    <Box mt={72}>
+      <Hero />
+    </Box>
   );
 }
