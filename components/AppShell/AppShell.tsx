@@ -18,8 +18,12 @@ export default function AppShell({ Component, pageProps }: Props) {
   return (
     <ThirdwebProvider
       desiredChainId={ChainId.Rinkeby}
-      autoConnect={false}
       supportedChains={[ChainId.Rinkeby, ChainId.Mainnet, ChainId.Polygon]}
+      authConfig={{
+        domain: "localhost:3000",
+        authUrl: "/api/auth",
+        loginRedirect: "/api/connect",
+      }}
     >
       <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
         <Global

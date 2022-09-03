@@ -1,0 +1,40 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+
+
+model User {
+  id      String @id @default(uuid()) 
+  name    String @default("Unnamed")
+  address String @unique
+  Collection Collection[]
+
+}
+
+model Collection {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  isImported  Boolean
+  category    Category
+  user        User     @relation(references: [id], fields: [userId])
+  userId      String   
+}
+
+enum Category {
+  ART 
+  DOMAIN_NAME 
+  VIDEO 
+  AUDIO
+  COLLECTABLE
+}

@@ -1,4 +1,5 @@
-import { Button, Group, createStyles, Header } from "@mantine/core";
+import { useMantineTheme, Group, createStyles, Header } from "@mantine/core";
+import { ConnectWallet } from "@thirdweb-dev/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import logo from "../../../public/favicon.svg";
@@ -18,9 +19,10 @@ const useStyles = createStyles((theme) => ({
 export default function Navbar() {
   const { classes } = useStyles();
   const { push } = useRouter();
+  const theme = useMantineTheme();
 
   return (
-    <Header className={classes.header} height={64}>
+    <Header className={classes.header} height={84}>
       <Group align={"center"} position="apart" spacing={"md"} p={"md"}>
         <Image
           onClick={() => {
@@ -34,7 +36,7 @@ export default function Navbar() {
 
         <Group spacing={"xs"}>
           <SearchButton />
-          <Button size="sm">Connect</Button>
+          <ConnectWallet accentColor={theme.colors.brand[7]} />
           <NavigationMenuButton />
         </Group>
       </Group>
