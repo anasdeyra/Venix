@@ -9,7 +9,7 @@ export default function _App(props: AppProps) {
   return (
     <>
       <Head>
-        <title>Page title</title>
+        <title>Venix</title>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta
           name="viewport"
