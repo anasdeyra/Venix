@@ -1,5 +1,5 @@
 import { useMantineTheme, Group, createStyles, Header } from "@mantine/core";
-import { ConnectWallet } from "@thirdweb-dev/react";
+import ConnectButton from "../../ConnectButton/ConnectButton";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import logo from "../../../public/favicon.svg";
@@ -36,7 +36,7 @@ export default function Navbar() {
 
         <Group spacing={"xs"}>
           <SearchButton />
-          <ConnectWallet accentColor={theme.colors.brand[7]} />
+          <ConnectButton />
           <NavigationMenuButton />
         </Group>
       </Group>

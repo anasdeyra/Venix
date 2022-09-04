@@ -7,7 +7,6 @@ import {
   useBalance,
   useLogin,
 } from "@thirdweb-dev/react";
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
 export default function Home() {
   const address = useAddress();

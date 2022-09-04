@@ -19,6 +19,9 @@ const theme: MantineThemeOverride = {
   },
   components: {
     Button: { defaultProps: { radius: "md" } },
+    Modal: {
+      styles: (t) => ({ title: { fontSize: t.fontSizes.xl, color: "white" } }),
+    },
   },
   colors: {
     brand: [

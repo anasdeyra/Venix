@@ -1,20 +1,16 @@
-import { AppShell as A } from "@mantine/core";
 import React from "react";
-import dynamic from "next/dynamic";
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import { MantineProvider } from "@mantine/core";
 import theme from "../../theme";
 import { NextComponentType, NextPageContext } from "next";
 import { Global } from "@emotion/react";
-import bgImage from "../../public/bg.jpg";
+import { ModalsProvider } from "@mantine/modals";
+import { NotificationsProvider } from "@mantine/notifications";
 
-type Props = {
-  Component: NextComponentType<NextPageContext, any, {}>;
-  pageProps: any;
-};
+import SignInModal from "../Modals/SignInModal";
+import App from "../../App";
 
 export default function AppShell({ Component, pageProps }: Props) {
-  const Navbar = dynamic(() => import("./Navbar/Navbar"), { ssr: false });
   return (
     <ThirdwebProvider
       desiredChainId={ChainId.Rinkeby}
@@ -31,18 +27,18 @@ export default function AppShell({ Component, pageProps }: Props) {
             "@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap')",
           ]}
         />
-        <A
-          styles={{
-            root: {
-              backgroundImage: `url(${bgImage.src})`,
-              backgroundSize: "fill",
-            },
-          }}
-          header={<Navbar />}
-        >
-          <Component {...pageProps} />
-        </A>
+
+        <NotificationsProvider>
+          <ModalsProvider modals={{ signIn: SignInModal }}>
+            <App Component={Component} pageProps={pageProps} />
+          </ModalsProvider>
+        </NotificationsProvider>
       </MantineProvider>
     </ThirdwebProvider>
   );
 }
+
+type Props = {
+  Component: NextComponentType<NextPageContext, any, {}>;
+  pageProps: any;
+};
