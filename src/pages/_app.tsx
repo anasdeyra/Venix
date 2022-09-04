@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
-
+import icon from "../../public/favicon.svg";
 import AppShell from "../components/AppShell/AppShell";
 
 export default function _App(props: AppProps) {
@@ -10,7 +10,7 @@ export default function _App(props: AppProps) {
     <>
       <Head>
         <title>Venix</title>
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link rel="shortcut icon" href={icon.src} />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
