@@ -23,13 +23,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     });
   }
   main()
-    .then(async () => {
-      await prisma.$disconnect();
-    })
-    .catch(async (e) => {
+    .catch((e) => {
       if (e.code === "P2002") return console.log("user already exist!");
-      await prisma.$disconnect();
+
       process.exit(1);
+    })
+    .finally(async () => {
+      await prisma.$disconnect();
     });
 
   return res.redirect("/");

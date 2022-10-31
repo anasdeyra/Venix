@@ -1,9 +1,11 @@
+import { withTRPC } from "@trpc/next";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import icon from "../../public/favicon.svg";
 import AppShell from "../components/AppShell/AppShell";
+import { AppRouter } from "./api/trpc/[trpc]";
 
-export default function _App(props: AppProps) {
+export function _App(props: AppProps) {
   const { Component, pageProps } = props;
 
   return (
@@ -20,3 +22,16 @@ export default function _App(props: AppProps) {
     </>
   );
 }
+
+export default withTRPC<AppRouter>({
+  config({ ctx }) {
+    const url = process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}/api/trpc`
+      : "http://localhost:3000/api/trpc";
+    return {
+      url,
+    };
+  },
+
+  ssr: true,
+})(_App);

@@ -2,7 +2,7 @@ import { useMantineTheme, Group, createStyles, Header } from "@mantine/core";
 import ConnectButton from "../../ConnectButton/ConnectButton";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import logo from "../../../public/favicon.svg";
+import logo from "../../../../public/favicon.svg";
 import NavigationMenuButton from "./NavigationDrawer/NavigationDrawerButton";
 import SearchButton from "./NavigationDrawer/SearchBar/SearchButton";
 

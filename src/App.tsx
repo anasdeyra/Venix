@@ -1,5 +1,5 @@
 import Navbar from "./components/AppShell/Navbar/Navbar";
-import bgImage from "./public/bg.jpg";
+import bgImage from "../public/bg.jpg";
 import { AppShell as A } from "@mantine/core";
 import { NextComponentType, NextPageContext } from "next";
 import { useModals } from "@mantine/modals";
@@ -9,11 +9,12 @@ export default function App({ Component, pageProps }: Props) {
   const { openContextModal } = useModals();
   const { user, isLoading } = useUser();
 
-  useEffect(() => {
-    if (isLoading) return;
-    if (user) return;
-    openContextModal("signIn", { innerProps: {}, title: "signature required" });
-  }, [isLoading]);
+  // useEffect(() => {
+  //   if (isLoading) return;
+  //   if (user) return;
+  //   openContextModal("signIn", { innerProps: {}, title: "signature required" });
+  // }, [isLoading]);
+
   return (
     <A
       styles={{
